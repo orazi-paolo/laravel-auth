@@ -23,11 +23,22 @@
                 <td>
                     <a href="{{ route('admin.projects.show', $project->id )}}" class="btn btn-primary btn-sm">Show</a>
                     <a href="{{ route('admin.projects.edit', $project->id )}}" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm delete-button"
+                            data-project-name="{{ $project->name }}">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+@endsection
+
+@section('additional-script')
+<script>
+    @vite('resources/js/delete-project.js')
+</script>
 @endsection
