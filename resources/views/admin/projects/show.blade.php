@@ -17,6 +17,6 @@
     </div>
 
     <a href="{{ route('admin.projects.index')}}" class="btn btn-primary">Back to list</a>
-    <a href="#" class="btn btn-warning">Edit project</a>
+    <a href=" {{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Edit project</a>
 </div>
 @endsection
