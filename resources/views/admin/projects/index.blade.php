@@ -20,7 +20,7 @@
                 <td>{{ $project->description }}</td>
                 <td>{{ $project->url }}</td>
                 <td>
-                    <a href="#" class="btn btn-primary btn-sm">Show</a>
+                    <a href="{{ route( 'admin.projects.show', $project->id )}}" class="btn btn-primary btn-sm">Show</a>
                     <a href="#" class="btn btn-warning btn-sm">Edit</a>
                     <a href="#" class="btn btn-danger btn-sm">Delete</a>
                 </td>
