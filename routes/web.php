@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::name('admin.project.')->prefix('admin/projects')->group(function () {
+Route::middleware('auth')->name('admin.projects.')->prefix('admin/projects')->group(function () {
     Route::get('/', [AdminProjectController::class, 'index'])->name('index');
     Route::get('/create', [AdminProjectController::class, 'create'])->name('create');
     Route::post('/store', [AdminProjectController::class, 'store'])->name('store');
