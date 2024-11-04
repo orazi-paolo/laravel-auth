@@ -31,7 +31,7 @@
             <input type="text" class="form-control" id="url" name="url" value="{{ old('url', $project->url) }}">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('admin.projects.update', $project->id ) }}" class="btn btn-secondary">Return</a>
+        <a href="{{ route('admin.projects.show', $project->id ) }}" class="btn btn-secondary">Return</a>
     </form>
 </div>
 @endsection
