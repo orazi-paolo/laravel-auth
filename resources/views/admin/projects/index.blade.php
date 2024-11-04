@@ -2,6 +2,7 @@
 @section('content')
 <div class="container mt-4">
     <h1 class="mb-4">Admin Projects</h1>
+    <a href="{{ route('admin.projects.create') }}" class="btn btn-primary mb-4">Add New Project</a>
     <table class="table table-bordered">
         <thead>
             <tr>
