@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,20 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [GuestProjectController::class, 'index']);
+
+Route::name('guest.')->group(function () {
+    Route::resource('projects', GuestProjectController::class)->only(['index', 'show']);
 });
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::middleware('auth')->name('admin.projects.')->prefix('admin/projects')->group(function () {
-    Route::get('/', [AdminProjectController::class, 'index'])->name('index');
-    Route::get('/create', [AdminProjectController::class, 'create'])->name('create');
-    Route::post('/store', [AdminProjectController::class, 'store'])->name('store');
-    Route::get('/{project}', [AdminProjectController::class, 'show'])->name('show');
-    Route::put('/{project}', [AdminProjectController::class, 'update'])->name('update');
-    Route::delete('/{project}', [AdminProjectController::class, 'destroy'])->name('destroy');
-    Route::get('/{project}/edit', [AdminProjectController::class, 'edit'])->name('edit');
+Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+    Route::resource('projects', AdminProjectController::class);
 });
